@@ -1,8 +1,8 @@
-import ProposalForm from '../ProposalForm/PorposalForm.js';
+import ProposalForm from '../ProposalForm/ProposalForm.js';
 import ProposalList from '../ProposalList/ProposalList.js';
 import './Dashboard.css';
 
-function Dashboard() {
+function Dashboard({ proposals, setProposals }) {
   return (
     <div className="dashboard-wrapper">
       <div className="row">

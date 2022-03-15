@@ -5,10 +5,12 @@ import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
 function Layout() {
+  const [proposals, setProposals] = useState([]);
+
   return (
     <div className="layout-wrapper">
-      <Header />
-      <Dashboard />
+      <Header proposals />
+      <Dashboard proposals setProposals />
     </div>
   );
 }
