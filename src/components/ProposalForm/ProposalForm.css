@@ -1,0 +1,17 @@
+.proposal-form-wrapper {
+  margin-top: 50px;
+}
+input,
+textarea {
+  border-radius: 10px;
+  margin-left: 20px;
+  width: 100%;
+}
+
+textarea {
+  height: 50px;
+}
+
+.proposal-submit {
+  width: 100px;
+}

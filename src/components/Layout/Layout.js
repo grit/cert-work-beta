@@ -7,10 +7,19 @@ import Dashboard from '../Dashboard/Dashboard.js';
 function Layout() {
   const [proposals, setProposals] = useState([]);
 
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('form submitted!');
+  };
+
   return (
     <div className="layout-wrapper">
       <Header proposals />
-      <Dashboard proposals setProposals />
+      <Dashboard
+        proposals={proposals}
+        setProposals={setProposals}
+        onFormSubmit={onFormSubmit}
+      />
     </div>
   );
 }
