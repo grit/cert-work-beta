@@ -33,6 +33,13 @@ function ProposalForm({
         </div>
         <div>
           <label>
+            Funding Time (in Days):
+            <br />
+            <input type="number" name="days" />
+          </label>
+        </div>
+        <div>
+          <label>
             Proposal Description:
             <br />
             <textarea type="text" name="description" />
