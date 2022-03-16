@@ -3,6 +3,7 @@ pragma solidity ^0.8.4;
 
 contract CertWork {
   struct Proposal {
+    address owner;
     string description;
     uint256 goalAmount;
     uint256 totalRaised;
@@ -21,5 +22,8 @@ contract CertWork {
     return proposals.length;
   }
 
-  constructor() {}
+  function addProposal(string calldata _description) external {
+    Proposal storage proposal = proposals.push();
+    proposal.description = _description;
+  }
 }
