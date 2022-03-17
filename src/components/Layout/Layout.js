@@ -6,7 +6,7 @@ import './Layout.css';
 import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
-const address = '0xe7f591673987dC36bB5d4068114E8A48B39F6FE3';
+const address = '0x78229853ac70Adb27C249D94bc0d60A6ECE3BdD5';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
@@ -17,25 +17,17 @@ function Layout() {
   const [fileUrlSilver, setFileUrlSilver] = useState('');
   const [fileUrlGold, setFileUrlGold] = useState('');
 
-  useEffect(() => {
-    populateProposals();
-  }, []);
-
-  async function populateProposals() {
-    const count = await contract.proposalCount();
-    console.log('count: ', count);
-  }
-
   const onFormSubmit = (e) => {
     e.preventDefault();
-    const description = e.target.description.value;
-    console.log(description);
+    const bronzeURI = document.querySelector('.file-url-bronze').text;
+    const silverURI = document.querySelector('.file-url-silver').text;
+    const goldURI = document.querySelector('.file-url-gold').text;
     (async function () {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signer = provider.getSigner();
       const contract = new ethers.Contract(address, CertWork.abi, signer);
       console.log(contract.address);
-      await contract.addProposal(description);
+      await contract.addProposal(bronzeURI, silverURI, goldURI);
     })();
   };
 

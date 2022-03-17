@@ -1,29 +1,24 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
+import './CertProposal.sol';
+
 contract CertWork {
-  struct Proposal {
-    address owner;
-    string description;
-    uint256 goalAmount;
-    uint256 totalRaised;
-    mapping(address => uint256) donations;
-    string bronzeMetaURI;
-    string silverMetaURI;
-    string goldMetaURI;
-    address[] bronzeDonors;
-    address[] silverDonnors;
-    address[] goldDonors;
-  }
+  address[] public contracts;
 
-  Proposal[] public proposals;
-
-  function proposalCount() external view returns (uint256) {
-    return proposals.length;
-  }
-
-  function addProposal(string calldata _description) external {
-    Proposal storage proposal = proposals.push();
-    proposal.description = _description;
+  function addProposal(
+    string calldata _bronzeURI,
+    string calldata _silverURI,
+    string calldata _goldURI
+  ) external returns (address) {
+    CertProposal proposalContract = new CertProposal(
+      _bronzeURI,
+      _silverURI,
+      _goldURI,
+      msg.sender
+    );
+    contracts.push(address(proposalContract));
+    return address(proposalContract);
   }
 }

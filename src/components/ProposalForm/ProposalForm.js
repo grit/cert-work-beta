@@ -24,20 +24,20 @@ function ProposalForm({
             <input type="text" name="proposal" />
           </label>
         </div>
-        <div>
+        {/* <div>
           <label>
             Funding Goal (in Eth):
             <br />
-            <input type="number" name="goal" />
+            <input type="number" step="0.01" name="goal" />
           </label>
         </div>
         <div>
           <label>
             Funding Time (in Days):
             <br />
-            <input type="number" name="days" />
+            <input type="number" name="time" />
           </label>
-        </div>
+        </div> */}
         <div>
           <label>
             Proposal Description:
@@ -45,13 +45,13 @@ function ProposalForm({
             <textarea type="text" name="description" />
           </label>
         </div>
-        <div>
+        {/* <div>
           <label>
             Proposal Owner:
             <br />
             <textarea type="text" name="owner" />
           </label>
-        </div>
+        </div> */}
         <div>
           <label>
             Bronze Tier Rewards:
