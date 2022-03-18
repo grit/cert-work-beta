@@ -21,7 +21,7 @@ function ProposalForm({
           <label>
             Research Proposal:
             <br />
-            <input type="text" name="proposal" />
+            <input className="proposal-name" type="text" name="proposal" />
           </label>
         </div>
         {/* <div>
@@ -42,7 +42,11 @@ function ProposalForm({
           <label>
             Proposal Description:
             <br />
-            <textarea type="text" name="description" />
+            <textarea
+              className="proposal-description"
+              type="text"
+              name="description"
+            />
           </label>
         </div>
         {/* <div>
@@ -56,21 +60,21 @@ function ProposalForm({
           <label>
             Bronze Tier Rewards:
             <br />
-            <textarea type="text" name="bronze" />
+            <textarea className="proposal-bronze" type="text" name="bronze" />
           </label>
         </div>
         <div>
           <label>
             Silver Tier Rewards:
             <br />
-            <textarea type="text" name="silver" />
+            <textarea className="proposal-silver" type="text" name="silver" />
           </label>
         </div>
         <div>
           <label>
             Gold Tier Rewards:
             <br />
-            <textarea type="text" name="tier" />
+            <textarea className="proposal-gold" type="text" name="tier" />
           </label>
         </div>
         <input className="proposal-submit" type="submit" value="Submit" />
