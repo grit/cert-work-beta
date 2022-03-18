@@ -7,11 +7,13 @@ import './CertProposal.sol';
 contract CertWork {
   address[] public contracts;
 
+  event ProposalCreated(address);
+
   function addProposal(
     string calldata _bronzeURI,
     string calldata _silverURI,
     string calldata _goldURI
-  ) external returns (address) {
+  ) external {
     CertProposal proposalContract = new CertProposal(
       _bronzeURI,
       _silverURI,
@@ -19,6 +21,6 @@ contract CertWork {
       msg.sender
     );
     contracts.push(address(proposalContract));
-    return address(proposalContract);
+    emit ProposalCreated(address(proposalContract));
   }
 }

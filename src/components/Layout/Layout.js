@@ -6,7 +6,7 @@ import './Layout.css';
 import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
-const address = '0x0FC2116f6A3516bdEC30222a2966b2e1167C57Cc';
+const address = '0x77dFb1b6d97fB5DD8BD9461cBfa594236Ed22cA5';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
@@ -16,6 +16,10 @@ function Layout() {
   const [fileUrlBronze, setFileUrlBronze] = useState('');
   const [fileUrlSilver, setFileUrlSilver] = useState('');
   const [fileUrlGold, setFileUrlGold] = useState('');
+
+  useEffect(() => {
+    console.log(proposals);
+  }, [proposals]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +43,11 @@ function Layout() {
         silverURI,
         goldURI
       );
-      console.log(contractAddress);
+      const receiptAddress = await contractAddress.wait();
+      const contract721 = receiptAddress.events.find(
+        (x) => x.event === 'ProposalCreated'
+      ).args[0];
+      console.log(contract721);
     })();
   };
 
