@@ -1,7 +1,7 @@
 .proposal-form-wrapper {
   margin-top: 50px;
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
 }
 input,
 textarea {
@@ -21,4 +21,19 @@ textarea {
 .nft-upload {
   margin-left: 25px;
   width: 50%;
+}
+
+.file-url-bronze,
+.file-url-silver,
+.file-url-gold {
+  font-size: 10px;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+.btn-primary {
+  width: 50%;
+  height: 50%;
 }

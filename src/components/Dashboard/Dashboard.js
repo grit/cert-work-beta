@@ -28,7 +28,7 @@ function Dashboard({
           />
         </div>
         <div className="column">
-          <ProposalList />
+          <ProposalList proposals={proposals} />
         </div>
       </div>
     </div>

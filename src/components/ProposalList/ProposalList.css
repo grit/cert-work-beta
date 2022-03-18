@@ -1,0 +1,12 @@
+.proposal-list-wrapper {
+  margin-top: 50px;
+}
+
+.proposals-header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.proposal-wrapper {
+  border: 1px solid black;
+}

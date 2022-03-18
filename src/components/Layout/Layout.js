@@ -12,7 +12,18 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
 
 function Layout() {
-  const [proposals, setProposals] = useState([]);
+  const [proposals, setProposals] = useState([
+    {
+      proposalName: 'proposalName',
+      proposalDescription: 'proposalDescription',
+      proposalBronze: 'proposalBronze',
+      proposalSilver: 'proposalSilver',
+      proposalGold: 'proposalGold',
+      bronzeURI: 'bronzeURI',
+      silverURI: 'silverURI',
+      goldURI: 'goldURI',
+    },
+  ]);
   const [fileUrlBronze, setFileUrlBronze] = useState('');
   const [fileUrlSilver, setFileUrlSilver] = useState('');
   const [fileUrlGold, setFileUrlGold] = useState('');
@@ -47,7 +58,18 @@ function Layout() {
       const contract721 = receiptAddress.events.find(
         (x) => x.event === 'ProposalCreated'
       ).args[0];
-      console.log(contract721);
+      const proposalsCopy = [...proposals];
+      proposalsCopy.push({
+        proposalName,
+        proposalDescription,
+        proposalBronze,
+        proposalSilver,
+        proposalGold,
+        bronzeURI,
+        silverURI,
+        goldURI,
+      });
+      setProposals(proposalsCopy);
     })();
   };
 
