@@ -1,7 +1,9 @@
 .dashboard-wrapper {
   width: 100%;
   height: 100%;
-  background-color: rgb(180, 202, 188);
+  /* background-color: rgb(180, 202, 188); */
+  background-color: #a38560;
+  background-image: linear-gradient(315deg, #a38560 0%, #e0d4ae 74%);
 }
 
 .row {
@@ -16,4 +18,9 @@
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
+}
+
+.proposal-list-column {
+  overflow-y: scroll;
+  height: 500px;
 }

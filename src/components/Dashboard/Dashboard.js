@@ -27,7 +27,7 @@ function Dashboard({
             setFileUrlGold={setFileUrlGold}
           />
         </div>
-        <div className="column">
+        <div className="column proposal-list-column">
           <ProposalList proposals={proposals} />
         </div>
       </div>

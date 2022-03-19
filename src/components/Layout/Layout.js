@@ -6,23 +6,48 @@ import './Layout.css';
 import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
-const address = '0x77dFb1b6d97fB5DD8BD9461cBfa594236Ed22cA5';
+const address = '0x501277b3a38F5d2eAc639bCC0746F18A9237ED40';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
 
 function Layout() {
   const [proposals, setProposals] = useState([
-    {
-      proposalName: 'proposalName',
-      proposalDescription: 'proposalDescription',
-      proposalBronze: 'proposalBronze',
-      proposalSilver: 'proposalSilver',
-      proposalGold: 'proposalGold',
-      bronzeURI: 'bronzeURI',
-      silverURI: 'silverURI',
-      goldURI: 'goldURI',
-    },
+    // {
+    //   proposalName: 'proposalName',
+    //   proposalDescription: 'proposalDescription',
+    //   proposalBronze: 'proposalBronze',
+    //   proposalSilver: 'proposalSilver',
+    //   proposalGold: 'proposalGold',
+    // },
+    // {
+    //   proposalName: 'proposalName',
+    //   proposalDescription: 'proposalDescription',
+    //   proposalBronze: 'proposalBronze',
+    //   proposalSilver: 'proposalSilver',
+    //   proposalGold: 'proposalGold',
+    // },
+    // {
+    //   proposalName: 'proposalName',
+    //   proposalDescription: 'proposalDescription',
+    //   proposalBronze: 'proposalBronze',
+    //   proposalSilver: 'proposalSilver',
+    //   proposalGold: 'proposalGold',
+    // },
+    // {
+    //   proposalName: 'proposalName',
+    //   proposalDescription: 'proposalDescription',
+    //   proposalBronze: 'proposalBronze',
+    //   proposalSilver: 'proposalSilver',
+    //   proposalGold: 'proposalGold',
+    // },
+    // {
+    //   proposalName: 'proposalName',
+    //   proposalDescription: 'proposalDescription',
+    //   proposalBronze: 'proposalBronze',
+    //   proposalSilver: 'proposalSilver',
+    //   proposalGold: 'proposalGold',
+    // },
   ]);
   const [fileUrlBronze, setFileUrlBronze] = useState('');
   const [fileUrlSilver, setFileUrlSilver] = useState('');
@@ -44,6 +69,11 @@ function Layout() {
     const bronzeURI = document.querySelector('.file-url-bronze').text;
     const silverURI = document.querySelector('.file-url-silver').text;
     const goldURI = document.querySelector('.file-url-gold').text;
+    document.querySelector('.proposal-name').value = '';
+    document.querySelector('.proposal-description').value = '';
+    document.querySelector('.proposal-bronze').value = '';
+    document.querySelector('.proposal-silver').value = '';
+    document.querySelector('.proposal-gold').value = '';
     (async function () {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signer = provider.getSigner();
@@ -68,6 +98,7 @@ function Layout() {
         bronzeURI,
         silverURI,
         goldURI,
+        contract721,
       });
       setProposals(proposalsCopy);
     })();
