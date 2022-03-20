@@ -1,10 +1,10 @@
 import './ProposalList.css';
 
-function ProposalList({ proposals }) {
+function ProposalList({ proposals, onButtonClick }) {
   return (
     <div className="proposal-list-wrapper">
       <div className="proposals-header">
-        Fund A Proposals - ({proposals.length} Available)
+        Fund A Proposal - ({proposals.length} Available)
       </div>
       {proposals.map((proposal, index) => {
         return (
@@ -23,19 +23,28 @@ function ProposalList({ proposals }) {
               <b>Bronze Awards:</b> {proposal.proposalBronze}
             </div>
             <div className="donate-wrapper">
-              <button>Donate</button> Bronze Tier
+              <button onClick={(e) => onButtonClick(e, proposal.contract721)}>
+                Donate
+              </button>{' '}
+              Bronze Tier
             </div>
             <div>
               <b>Silver Awards:</b> {proposal.proposalSilver}
             </div>
             <div className="donate-wrapper">
-              <button>Donate</button> Silver Tier
+              <button onClick={(e) => onButtonClick(e, proposal.contract721)}>
+                Donate
+              </button>{' '}
+              Silver Tier
             </div>
             <div>
               <b>Gold Awards:</b> {proposal.proposalGold}
             </div>
             <div className="donate-wrapper">
-              <button>Donate</button> Gold Tier
+              <button onClick={(e) => onButtonClick(e, proposal.contract721)}>
+                Donate
+              </button>{' '}
+              Gold Tier
             </div>
           </div>
         );

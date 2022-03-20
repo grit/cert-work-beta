@@ -4,9 +4,10 @@ pragma solidity ^0.8.4;
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 
 contract CertProposal is ERC721 {
+  mapping(address => uint256) public donations;
+
   struct Proposal {
     address owner;
-    mapping(address => uint256) donations;
     string bronzeMetaURI;
     string silverMetaURI;
     string goldMetaURI;
@@ -19,7 +20,7 @@ contract CertProposal is ERC721 {
     string memory _silverTokenURI,
     string memory _goldTokenURI,
     address _owner
-  ) public ERC721('CERT', 'CRT') {
+  ) public payable ERC721('CERT', 'CRT') {
     proposal.bronzeMetaURI = _bronzeTokenURI;
     proposal.silverMetaURI = _silverTokenURI;
     proposal.goldMetaURI = _goldTokenURI;
@@ -42,5 +43,13 @@ contract CertProposal is ERC721 {
       proposal.goldMetaURI,
       proposal.owner
     );
+  }
+
+  function receiveMoney() public payable {
+    donations[msg.sender] = msg.value;
+  }
+
+  receive() external payable {
+    receiveMoney();
   }
 }

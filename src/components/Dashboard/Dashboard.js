@@ -12,6 +12,7 @@ function Dashboard({
   setFileUrlBronze,
   setFileUrlSilver,
   setFileUrlGold,
+  onButtonClick,
 }) {
   return (
     <div className="dashboard-wrapper">
@@ -28,7 +29,7 @@ function Dashboard({
           />
         </div>
         <div className="column proposal-list-column">
-          <ProposalList proposals={proposals} />
+          <ProposalList proposals={proposals} onButtonClick={onButtonClick} />
         </div>
       </div>
     </div>

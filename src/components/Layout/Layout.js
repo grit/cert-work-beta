@@ -1,12 +1,13 @@
 import CertWork from '../../../src/config.json';
+import CertProp from '../../../src/config-prop.json';
 import { useEffect, useState } from 'react';
-import { ethers } from 'ethers';
+import { ethers, utils } from 'ethers';
 import './Layout.css';
 
 import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
-const address = '0x87EfAe1a45c784DE8c48944Da3FE51926F25E003';
+const address = '0xCdbAb5d2A6B016B79146AA59cae254d81e96046a';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
@@ -104,6 +105,22 @@ function Layout() {
     })();
   };
 
+  const onButtonClick = (e, contractAddress) => {
+    e.preventDefault();
+    console.log(e, contractAddress);
+    (async function () {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        CertProp.abi,
+        signer
+      );
+      const options = { value: utils.parseEther('0.01') };
+      const receipt = await contract.receiveMoney(options);
+    })();
+  };
+
   return (
     <div className="layout-wrapper">
       <Header proposals />
@@ -117,6 +134,7 @@ function Layout() {
         setFileUrlSilver={setFileUrlSilver}
         fileUrlGold={fileUrlGold}
         setFileUrlGold={setFileUrlGold}
+        onButtonClick={onButtonClick}
       />
     </div>
   );
