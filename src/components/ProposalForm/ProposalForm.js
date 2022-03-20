@@ -73,9 +73,33 @@ function ProposalForm({
           </div>
           <div>
             <label>
+              Bronze Tier Fee (in eth):
+              <br />
+              <input
+                className="bronze-fee"
+                type="number"
+                name="bronzeFee"
+                step="0.01"
+              />
+            </label>
+          </div>
+          <div>
+            <label>
               Silver Tier Rewards:
               <br />
               <textarea className="proposal-silver" type="text" name="silver" />
+            </label>
+          </div>
+          <div>
+            <label>
+              Silver Tier Fee (in eth):
+              <br />
+              <input
+                className="silver-fee"
+                type="number"
+                name="silverFee"
+                step="0.01"
+              />
             </label>
           </div>
           <div>
@@ -85,6 +109,19 @@ function ProposalForm({
               <textarea className="proposal-gold" type="text" name="tier" />
             </label>
           </div>
+          <div>
+            <label>
+              Gold Tier Fee (in eth):
+              <br />
+              <input
+                className="gold-fee"
+                type="number"
+                name="goldFee"
+                step="0.01"
+              />
+            </label>
+          </div>
+          <br />
           <input className="proposal-submit" type="submit" value="Submit" />
         </form>
         <div className="nft-upload">

@@ -70,11 +70,17 @@ function Layout() {
     const bronzeURI = document.querySelector('.file-url-bronze').text;
     const silverURI = document.querySelector('.file-url-silver').text;
     const goldURI = document.querySelector('.file-url-gold').text;
+    const bronzeFee = document.querySelector('.bronze-fee').value;
+    const silverFee = document.querySelector('.silver-fee').value;
+    const goldFee = document.querySelector('.gold-fee').value;
     document.querySelector('.proposal-name').value = '';
     document.querySelector('.proposal-description').value = '';
     document.querySelector('.proposal-bronze').value = '';
     document.querySelector('.proposal-silver').value = '';
     document.querySelector('.proposal-gold').value = '';
+    document.querySelector('.bronze-fee').value = '';
+    document.querySelector('.silver-fee').value = '';
+    document.querySelector('.gold-fee').value = '';
     (async function () {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signer = provider.getSigner();
@@ -100,12 +106,15 @@ function Layout() {
         silverURI,
         goldURI,
         contract721,
+        bronzeFee,
+        silverFee,
+        goldFee,
       });
       setProposals(proposalsCopy);
     })();
   };
 
-  const onButtonClick = (e, contractAddress) => {
+  const onButtonClick = (e, contractAddress, fee) => {
     e.preventDefault();
     console.log(e, contractAddress);
     (async function () {
@@ -116,7 +125,7 @@ function Layout() {
         CertProp.abi,
         signer
       );
-      const options = { value: utils.parseEther('0.01') };
+      const options = { value: utils.parseEther(String(fee)) };
       const receipt = await contract.receiveMoney(options);
     })();
   };

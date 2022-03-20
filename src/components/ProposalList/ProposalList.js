@@ -23,7 +23,11 @@ function ProposalList({ proposals, onButtonClick }) {
               <b>Bronze Awards:</b> {proposal.proposalBronze}
             </div>
             <div className="donate-wrapper">
-              <button onClick={(e) => onButtonClick(e, proposal.contract721)}>
+              <button
+                onClick={(e) =>
+                  onButtonClick(e, proposal.contract721, proposal.bronzeFee)
+                }
+              >
                 Donate
               </button>{' '}
               Bronze Tier
@@ -32,7 +36,11 @@ function ProposalList({ proposals, onButtonClick }) {
               <b>Silver Awards:</b> {proposal.proposalSilver}
             </div>
             <div className="donate-wrapper">
-              <button onClick={(e) => onButtonClick(e, proposal.contract721)}>
+              <button
+                onClick={(e) =>
+                  onButtonClick(e, proposal.contract721, proposal.silverFee)
+                }
+              >
                 Donate
               </button>{' '}
               Silver Tier
@@ -41,7 +49,11 @@ function ProposalList({ proposals, onButtonClick }) {
               <b>Gold Awards:</b> {proposal.proposalGold}
             </div>
             <div className="donate-wrapper">
-              <button onClick={(e) => onButtonClick(e, proposal.contract721)}>
+              <button
+                onClick={(e) =>
+                  onButtonClick(e, proposal.contract721, proposal.goldFee)
+                }
+              >
                 Donate
               </button>{' '}
               Gold Tier
