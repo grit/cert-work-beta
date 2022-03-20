@@ -88,7 +88,7 @@ function ProposalForm({
           <input className="proposal-submit" type="submit" value="Submit" />
         </form>
         <div className="nft-upload">
-          <div>
+          <div className="file-upload-wrapper">
             <FileUpload setUrl={setFileUrlBronze} />
             Bronze FileUrl :{' '}
             <a
@@ -100,7 +100,7 @@ function ProposalForm({
               {fileUrlBronze}
             </a>
           </div>
-          <div>
+          <div className="file-upload-wrapper">
             <FileUpload setUrl={setFileUrlSilver} />
             Silver FileUrl :{' '}
             <a
@@ -112,7 +112,7 @@ function ProposalForm({
               {fileUrlSilver}
             </a>
           </div>
-          <div>
+          <div className="file-upload-wrapper">
             <FileUpload setUrl={setFileUrlGold} />
             Gold FileUrl :{' '}
             <a

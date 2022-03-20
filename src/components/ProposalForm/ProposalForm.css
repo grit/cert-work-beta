@@ -43,3 +43,8 @@ h5 {
   width: 50%;
   height: 50%;
 }
+
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+}
