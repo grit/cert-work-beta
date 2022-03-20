@@ -24,39 +24,44 @@ function ProposalList({ proposals, onButtonClick }) {
             </div>
             <div className="donate-wrapper">
               <button
+                className="donate-button"
                 onClick={(e) =>
                   onButtonClick(e, proposal.contract721, proposal.bronzeFee)
                 }
               >
                 Donate
               </button>{' '}
-              Bronze Tier
+              Bronze Tier <b>({proposal.bronzeFee} eth)</b>
             </div>
+            <hr />
             <div>
               <b>Silver Awards:</b> {proposal.proposalSilver}
             </div>
             <div className="donate-wrapper">
               <button
+                className="donate-button"
                 onClick={(e) =>
                   onButtonClick(e, proposal.contract721, proposal.silverFee)
                 }
               >
                 Donate
               </button>{' '}
-              Silver Tier
+              Silver Tier <b>({proposal.silverFee} eth)</b>
             </div>
+            <hr />
             <div>
               <b>Gold Awards:</b> {proposal.proposalGold}
             </div>
             <div className="donate-wrapper">
               <button
+                className="donate-button"
                 onClick={(e) =>
                   onButtonClick(e, proposal.contract721, proposal.goldFee)
                 }
               >
                 Donate
               </button>{' '}
-              Gold Tier
+              Gold Tier <b>({proposal.goldFee} eth)</b>
             </div>
           </div>
         );
