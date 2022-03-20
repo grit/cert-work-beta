@@ -5,6 +5,7 @@ import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 
 contract CertProposal is ERC721 {
   mapping(address => uint256) public donations;
+  address[] public doners;
 
   struct Proposal {
     address owner;
@@ -47,6 +48,7 @@ contract CertProposal is ERC721 {
 
   function receiveMoney() public payable {
     donations[msg.sender] = msg.value;
+    doners.push(msg.sender);
   }
 
   receive() external payable {
