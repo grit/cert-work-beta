@@ -6,7 +6,7 @@ import './Layout.css';
 import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
-const address = '0x501277b3a38F5d2eAc639bCC0746F18A9237ED40';
+const address = '0x87EfAe1a45c784DE8c48944Da3FE51926F25E003';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);

@@ -17,3 +17,9 @@
   padding: 10px 10px;
   font-size: 14px;
 }
+
+.donate-wrapper {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
