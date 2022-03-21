@@ -13,6 +13,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
 
 function Layout() {
+  const [accounts, setAccounts] = useState([]);
   const [proposals, setProposals] = useState([
     // {
     //   proposalName: 'proposalName',
@@ -57,6 +58,8 @@ function Layout() {
   useEffect(() => {
     console.log(proposals);
   }, [proposals]);
+
+  const isConnected = Boolean(accounts[0]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -130,21 +133,39 @@ function Layout() {
     })();
   };
 
+  async function connectAccount() {
+    if (window.ethereum) {
+      const accounts = await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+      setAccounts(accounts);
+      console.log(accounts);
+    }
+  }
+
   return (
     <div className="layout-wrapper">
       <Header proposals />
-      <Dashboard
-        proposals={proposals}
-        setProposals={setProposals}
-        onFormSubmit={onFormSubmit}
-        fileUrlBronze={fileUrlBronze}
-        setFileUrlBronze={setFileUrlBronze}
-        fileUrlSilver={fileUrlSilver}
-        setFileUrlSilver={setFileUrlSilver}
-        fileUrlGold={fileUrlGold}
-        setFileUrlGold={setFileUrlGold}
-        onButtonClick={onButtonClick}
-      />
+      {isConnected ? (
+        <Dashboard
+          proposals={proposals}
+          setProposals={setProposals}
+          onFormSubmit={onFormSubmit}
+          fileUrlBronze={fileUrlBronze}
+          setFileUrlBronze={setFileUrlBronze}
+          fileUrlSilver={fileUrlSilver}
+          setFileUrlSilver={setFileUrlSilver}
+          fileUrlGold={fileUrlGold}
+          setFileUrlGold={setFileUrlGold}
+          onButtonClick={onButtonClick}
+        />
+      ) : (
+        <div className="moving-background">
+          <button className="background-button" onClick={connectAccount}>
+            Connect to CERT via Metamask
+          </button>
+        </div>
+      )}
     </div>
   );
 }
