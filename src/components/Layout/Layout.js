@@ -3,15 +3,18 @@ import CertProp from '../../../src/config-prop.json';
 import { useEffect, useState } from 'react';
 import { ethers, utils } from 'ethers';
 import TypeWriter from 'react-typewriter';
+import { create } from 'ipfs-http-client';
 import './Layout.css';
 
 import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
-const address = '0xCdbAb5d2A6B016B79146AA59cae254d81e96046a';
+const address = '0xBaF6E17Eb0A8a944cE1A35cCc852451236663c7d';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
+
+const ipfs = create('https://ipfs.infura.io:5001');
 
 function Layout() {
   const [accounts, setAccounts] = useState([]);
@@ -62,6 +65,11 @@ function Layout() {
 
   const isConnected = Boolean(accounts[0]);
 
+  const ipfsUpload = async (file) => {
+    const { path } = await ipfs.add(file);
+    return `https://gateway.ipfs.io/ipfs/${path}`;
+  };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     const proposalName = document.querySelector('.proposal-name').value;
@@ -90,10 +98,46 @@ function Layout() {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(address, CertWork.abi, signer);
       console.log(contract.address);
+
+      const bronzeFile = {
+        path: '/',
+        content: JSON.stringify({
+          name: proposalName,
+          description: proposalDescription,
+          image: bronzeURI,
+        }),
+      };
+
+      const silverFile = {
+        path: '/',
+        content: JSON.stringify({
+          name: proposalName,
+          description: proposalDescription,
+          image: silverURI,
+        }),
+      };
+
+      const goldFile = {
+        path: '/',
+        content: JSON.stringify({
+          name: proposalName,
+          description: proposalDescription,
+          image: goldURI,
+        }),
+      };
+
+      const metaBronzeURI = await ipfsUpload(bronzeFile);
+      const metaSilverURI = await ipfsUpload(silverFile);
+      const metaGoldURI = await ipfsUpload(goldFile);
+
+      console.log('metaBronzeURI: ', metaBronzeURI);
+      console.log('metaSilverURI: ', metaSilverURI);
+      console.log('metaGoldURI: ', metaGoldURI);
+
       const contractAddress = await contract.addProposal(
-        bronzeURI,
-        silverURI,
-        goldURI
+        metaBronzeURI,
+        metaSilverURI,
+        metaGoldURI
       );
       const receiptAddress = await contractAddress.wait();
       const contract721 = receiptAddress.events.find(
@@ -106,9 +150,9 @@ function Layout() {
         proposalBronze,
         proposalSilver,
         proposalGold,
-        bronzeURI,
-        silverURI,
-        goldURI,
+        metaBronzeURI,
+        metaSilverURI,
+        metaGoldURI,
         contract721,
         bronzeFee,
         silverFee,
