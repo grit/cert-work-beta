@@ -18,43 +18,7 @@ const ipfs = create('https://ipfs.infura.io:5001');
 
 function Layout() {
   const [accounts, setAccounts] = useState([]);
-  const [proposals, setProposals] = useState([
-    // {
-    //   proposalName: 'proposalName',
-    //   proposalDescription: 'proposalDescription',
-    //   proposalBronze: 'proposalBronze',
-    //   proposalSilver: 'proposalSilver',
-    //   proposalGold: 'proposalGold',
-    // },
-    // {
-    //   proposalName: 'proposalName',
-    //   proposalDescription: 'proposalDescription',
-    //   proposalBronze: 'proposalBronze',
-    //   proposalSilver: 'proposalSilver',
-    //   proposalGold: 'proposalGold',
-    // },
-    // {
-    //   proposalName: 'proposalName',
-    //   proposalDescription: 'proposalDescription',
-    //   proposalBronze: 'proposalBronze',
-    //   proposalSilver: 'proposalSilver',
-    //   proposalGold: 'proposalGold',
-    // },
-    // {
-    //   proposalName: 'proposalName',
-    //   proposalDescription: 'proposalDescription',
-    //   proposalBronze: 'proposalBronze',
-    //   proposalSilver: 'proposalSilver',
-    //   proposalGold: 'proposalGold',
-    // },
-    // {
-    //   proposalName: 'proposalName',
-    //   proposalDescription: 'proposalDescription',
-    //   proposalBronze: 'proposalBronze',
-    //   proposalSilver: 'proposalSilver',
-    //   proposalGold: 'proposalGold',
-    // },
-  ]);
+  const [proposals, setProposals] = useState([]);
   const [fileUrlBronze, setFileUrlBronze] = useState('');
   const [fileUrlSilver, setFileUrlSilver] = useState('');
   const [fileUrlGold, setFileUrlGold] = useState('');
