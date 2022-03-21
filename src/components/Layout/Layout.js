@@ -2,6 +2,7 @@ import CertWork from '../../../src/config.json';
 import CertProp from '../../../src/config-prop.json';
 import { useEffect, useState } from 'react';
 import { ethers, utils } from 'ethers';
+import TypeWriter from 'react-typewriter';
 import './Layout.css';
 
 import Header from '../Header/Header.js';
@@ -160,10 +161,29 @@ function Layout() {
           onButtonClick={onButtonClick}
         />
       ) : (
-        <div className="moving-background">
-          <button className="background-button" onClick={connectAccount}>
-            Connect to CERT via Metamask
-          </button>
+        <div>
+          <div className="moving-background">
+            <div className="typewriter">
+              <TypeWriter typing={1}>
+                <div>(CERT) - Community-Engaged Research Token</div>
+
+                <div className="typewriter-second">
+                  In the past month:
+                  <br />
+                  58 research studies have been conducted.
+                  <br />
+                  $23,580 of funding has been distributed.
+                  <br />
+                  720 NFTs have been minted and awarded.
+                </div>
+              </TypeWriter>
+            </div>
+          </div>
+          <div className="background-button-wrapper">
+            <button className="background-button" onClick={connectAccount}>
+              Connect to CERT via Metamask
+            </button>
+          </div>
         </div>
       )}
     </div>
