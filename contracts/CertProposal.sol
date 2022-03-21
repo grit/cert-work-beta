@@ -25,7 +25,7 @@ contract CertProposal is ERC721 {
     proposal.bronzeMetaURI = _bronzeTokenURI;
     proposal.silverMetaURI = _silverTokenURI;
     proposal.goldMetaURI = _goldTokenURI;
-    proposal.owner = _owner;
+    proposal.owner = payable(_owner);
   }
 
   function getProposal()
@@ -49,6 +49,13 @@ contract CertProposal is ERC721 {
   function receiveMoney() public payable {
     donations[msg.sender] = msg.value;
     doners.push(msg.sender);
+  }
+
+  function withdraw() public {
+    require(msg.sender == proposal.owner);
+    uint256 amount = address(this).balance;
+    (bool success, ) = proposal.owner.call{value: amount}('');
+    require(success, 'Failed to send Ether');
   }
 
   receive() external payable {
