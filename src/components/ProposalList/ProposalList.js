@@ -1,10 +1,20 @@
+import TypeWriter from 'react-typewriter';
 import './ProposalList.css';
 
-function ProposalList({ proposals, onButtonClick }) {
+function ProposalList({ proposals, onButtonClick, contractLoading }) {
   return (
     <div className="proposal-list-wrapper">
       <div className="proposals-header">
         Fund A Proposal - ({proposals.length} Available)
+      </div>
+      <div>
+        {contractLoading ? (
+          <TypeWriter typing={1} minDelay={100}>
+            <div className="typewriter-heading">
+              Loading New Contract..........
+            </div>
+          </TypeWriter>
+        ) : null}
       </div>
       {proposals.map((proposal, index) => {
         return (

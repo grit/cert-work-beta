@@ -9,7 +9,7 @@ import './Layout.css';
 import Header from '../Header/Header.js';
 import Dashboard from '../Dashboard/Dashboard.js';
 
-const address = '0xBaF6E17Eb0A8a944cE1A35cCc852451236663c7d';
+const address = '0x5421215D23a2F93E479b6711B148E492165E85bd';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contract = new ethers.Contract(address, CertWork.abi, provider);
@@ -22,6 +22,7 @@ function Layout() {
   const [fileUrlBronze, setFileUrlBronze] = useState('');
   const [fileUrlSilver, setFileUrlSilver] = useState('');
   const [fileUrlGold, setFileUrlGold] = useState('');
+  const [contractLoading, setContractLoading] = useState(false);
 
   useEffect(() => {
     console.log(proposals);
@@ -103,6 +104,7 @@ function Layout() {
         metaSilverURI,
         metaGoldURI
       );
+      setContractLoading(true);
       const receiptAddress = await contractAddress.wait();
       const contract721 = receiptAddress.events.find(
         (x) => x.event === 'ProposalCreated'
@@ -123,6 +125,7 @@ function Layout() {
         goldFee,
       });
       setProposals(proposalsCopy);
+      setContractLoading(false);
     })();
   };
 
@@ -167,6 +170,7 @@ function Layout() {
           fileUrlGold={fileUrlGold}
           setFileUrlGold={setFileUrlGold}
           onButtonClick={onButtonClick}
+          contractLoading={contractLoading}
         />
       ) : (
         <div>
