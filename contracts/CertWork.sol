@@ -23,4 +23,8 @@ contract CertWork {
     contracts.push(address(proposalContract));
     emit ProposalCreated(address(proposalContract));
   }
+
+  function getContracts() public view returns (address[] memory) {
+    return contracts;
+  }
 }
