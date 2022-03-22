@@ -157,7 +157,7 @@ function Layout() {
 
   return (
     <div className="layout-wrapper">
-      <Header proposals />
+      <Header proposals isConnected={isConnected} />
       {isConnected ? (
         <Dashboard
           proposals={proposals}

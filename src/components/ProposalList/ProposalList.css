@@ -15,6 +15,7 @@
   word-break: break-word;
   padding: 10px 10px;
   font-size: 14px;
+  background-color: #a0c6cd;
 }
 
 .donate-wrapper {
@@ -26,4 +27,11 @@
 .donate-button {
   border-radius: 20px;
   margin-right: 10px;
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  margin-top: -40px;
+  align-items: baseline;
 }

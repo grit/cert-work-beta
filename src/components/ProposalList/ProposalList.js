@@ -1,4 +1,5 @@
 import TypeWriter from 'react-typewriter';
+import ReactLoading from 'react-loading';
 import './ProposalList.css';
 
 function ProposalList({ proposals, onButtonClick, contractLoading }) {
@@ -9,11 +10,14 @@ function ProposalList({ proposals, onButtonClick, contractLoading }) {
       </div>
       <div>
         {contractLoading ? (
-          <TypeWriter typing={1} minDelay={100}>
-            <div className="typewriter-heading">
-              Loading New Contract..........
-            </div>
-          </TypeWriter>
+          <div className="loading-state">
+            <TypeWriter typing={1} minDelay={100}>
+              <div className="typewriter-heading">
+                ADDING NEW PROPOSAL... ->
+              </div>
+            </TypeWriter>
+            <ReactLoading type="cylon" color="#052CA3" height={5} width={100} />
+          </div>
         ) : null}
       </div>
       {proposals.map((proposal, index) => {
