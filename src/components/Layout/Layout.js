@@ -12,7 +12,6 @@ import Dashboard from '../Dashboard/Dashboard.js';
 const address = '0xC2418840f38FEC038D556A19C1Af48818C530E1C';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
-const contract = new ethers.Contract(address, CertWork.abi, provider);
 
 const ipfs = create('https://ipfs.infura.io:5001');
 
@@ -23,10 +22,6 @@ function Layout() {
   const [fileUrlSilver, setFileUrlSilver] = useState('');
   const [fileUrlGold, setFileUrlGold] = useState('');
   const [contractLoading, setContractLoading] = useState(false);
-
-  useEffect(() => {
-    console.log(proposals);
-  }, [proposals]);
 
   const isConnected = Boolean(accounts[0]);
 
@@ -62,7 +57,6 @@ function Layout() {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signer = provider.getSigner();
       const contract = new ethers.Contract(address, CertWork.abi, signer);
-      console.log(contract.address);
 
       const bronzeFile = {
         path: '/',
@@ -94,10 +88,6 @@ function Layout() {
       const metaBronzeURI = await ipfsUpload(bronzeFile);
       const metaSilverURI = await ipfsUpload(silverFile);
       const metaGoldURI = await ipfsUpload(goldFile);
-
-      console.log('metaBronzeURI: ', metaBronzeURI);
-      console.log('metaSilverURI: ', metaSilverURI);
-      console.log('metaGoldURI: ', metaGoldURI);
 
       const contractAddress = await contract.addProposal(
         metaBronzeURI,
@@ -131,7 +121,6 @@ function Layout() {
 
   const onButtonClick = (e, contractAddress, fee) => {
     e.preventDefault();
-    console.log(e, contractAddress);
     (async function () {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signer = provider.getSigner();
@@ -141,7 +130,7 @@ function Layout() {
         signer
       );
       const options = { value: utils.parseEther(String(fee)) };
-      const receipt = await contract.receiveMoney(options);
+      await contract.receiveMoney(options);
     })();
   };
 
@@ -151,7 +140,6 @@ function Layout() {
         method: 'eth_requestAccounts',
       });
       setAccounts(accounts);
-      console.log(accounts);
     }
   }
 

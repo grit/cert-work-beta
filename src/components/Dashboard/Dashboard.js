@@ -4,7 +4,6 @@ import './Dashboard.css';
 
 function Dashboard({
   proposals,
-  setProposals,
   onFormSubmit,
   fileUrlBronze,
   fileUrlSilver,
