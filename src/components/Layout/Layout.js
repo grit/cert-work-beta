@@ -36,23 +36,18 @@ function Layout() {
     const proposalDescription = document.querySelector(
       '.proposal-description'
     ).value;
-    const proposalBronze = document.querySelector('.proposal-bronze').value;
-    const proposalSilver = document.querySelector('.proposal-silver').value;
-    const proposalGold = document.querySelector('.proposal-gold').value;
-    const bronzeURI = document.querySelector('.file-url-bronze').text;
-    const silverURI = document.querySelector('.file-url-silver').text;
-    const goldURI = document.querySelector('.file-url-gold').text;
-    const bronzeFee = document.querySelector('.bronze-fee').value;
-    const silverFee = document.querySelector('.silver-fee').value;
-    const goldFee = document.querySelector('.gold-fee').value;
-    document.querySelector('.proposal-name').value = '';
-    document.querySelector('.proposal-description').value = '';
-    document.querySelector('.proposal-bronze').value = '';
-    document.querySelector('.proposal-silver').value = '';
-    document.querySelector('.proposal-gold').value = '';
-    document.querySelector('.bronze-fee').value = '';
-    document.querySelector('.silver-fee').value = '';
-    document.querySelector('.gold-fee').value = '';
+    const q = document.querySelector.bind(document);
+    const proposalBronze = q('.proposal-bronze').value;
+    const proposalSilver = q('.proposal-silver').value;
+    const proposalGold = q('.proposal-gold').value;
+    const bronzeURI = q('.file-url-bronze').text;
+    const silverURI = q('.file-url-silver').text;
+    const goldURI = q('.file-url-gold').text;
+    const bronzeFee = q('.bronze-fee').value;
+    const silverFee = q('.silver-fee').value;
+    const goldFee = q('.gold-fee').value;
+    e.target.reset();
+
     (async function () {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signer = provider.getSigner();
